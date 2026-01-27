@@ -4,6 +4,7 @@ A stock trading program based off a simulated market in a game. It collected dat
 
 ## The project showcases the following technical features:
 
-# Javascript:
+### Javascript:
 - Use of functionalities and data accessible only through an API to a closed system's game instance
 - Built from raw Javascript to showcase extend of Javascript knowledge and capability
+
