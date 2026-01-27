@@ -1,0 +1,276 @@
+body {
+    background-color: #87b5b5;
+    max-height: 90vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#center-container {
+    margin: 30vh auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+#drum-machine {
+    margin: auto;
+    width: 580px;
+    background-color: #b3b3b3;
+    box-shadow: 0px 0px 30px;
+    text-align: center;
+
+    border: 1px solid;
+}
+
+#logo {
+    text-align: right;
+    margin: auto;
+    padding: 10px;
+
+    border-bottom: 1px solid;
+}
+
+#drum {
+    margin: auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+
+}
+
+#drum-pad {
+    margin: auto 10px auto auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+
+}
+
+.drum-pad {
+    margin: 10px;
+    min-width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    max-height: 80px;
+    background-color: grey;
+    box-shadow: black 3px 3px 5px;
+}
+
+#settings {
+    margin: auto auto auto auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+
+}
+
+#power,
+#display,
+#volume,
+#bank {
+    margin: 5px;
+}
+
+#power>p,
+#power>label {
+    margin: 0px;
+}
+
+#display>div {
+    background-color: gray;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid;
+}
+
+#display>div>p {
+    margin: auto;
+}
+
+#volume>p,
+#volume>label {
+    margin: 0px;
+}
+
+#bank>p,
+#bank>label {
+    margin: 0px;
+}
+
+
+/* Toggle - Start */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    transition: .4s;
+}
+
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(139, 139, 139);
+    box-shadow: inset 0px 0px 2px 2px rgb(85, 85, 85);
+    transition: .4s;
+}
+
+
+input:checked+.toggle {
+    background-color: black;
+}
+
+input:focus+.toggle {
+    box-shadow: 0 0 1px black;
+}
+
+input:checked+.toggle:before {
+    transform: translateX(26px);
+    box-shadow: inset 0px 0px 2px 2px rgb(128, 128, 128);
+    background-color: white;
+}
+
+/* Toggle - End */
+
+
+
+/* Volume range slider - Start */
+.slidecontainer {
+    width: 100%;
+    /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;
+    /* Override default CSS styles */
+    appearance: none;
+    width: 100%;
+    /* Full-width */
+    height: 25px;
+    /* Specified height */
+    background: black;
+    /* Grey background */
+    outline: none;
+    /* Remove outline */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    width: 15px;
+    /* Set a specific slider handle width */
+    height: 20px;
+    /* Slider handle height */
+    background: white;
+    /* box-shadow: inset 0px 0px 2px 2px rgb(128, 128, 128), inset 0px 0px 3px 3px rgb(184, 184, 184), inset 0px 0px 13px 13px rgb(255, 255, 255); */
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+    border: 1px solid;
+    border-radius: 0px;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    /* Set a specific slider handle width */
+    height: 20px;
+    /* Slider handle height */
+    background: white;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+    border: 1px solid;
+    border-radius: 0px;
+}
+
+/* Volume range slider - End */
+
+#web-developer {
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+#web-developer>a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    #drum-machine {
+        width: 400px;
+    }
+
+    #drum {
+        grid-template-columns: 1fr;
+    }
+
+    #drum-pad {
+        margin: auto;
+    }
+
+    #settings {
+        margin: 30px auto;
+    }
+}
+
+@media screen and (max-width: 600px) and (max-height: 885px) {
+    #drum-machine {
+        width: 400px;
+    }
+
+    #drum {
+        grid-template-columns: 1fr;
+    }
+
+    #drum-pad {
+        margin: auto;
+    }
+
+    #settings {
+        margin: 30px auto;
+    }
+
+    /* #center-container {
+        margin: 15vh auto;
+    } */
+
+    body {
+        max-height: 800px;
+    }
+}

@@ -1,0 +1,59 @@
+@media (min-width:961px) {
+    .div-main-section {
+        max-width: 961px;
+        position: relative;
+        left: 290px;
+    }
+
+    #navbar {
+        position: fixed;
+    }
+
+}
+
+nav {
+    border: 1px solid gray;
+    border-right: 2px solid gray;
+    height: 100%;
+    min-width: 290px;
+    width: 290px;
+}
+
+.div-navbar header,
+.div-navbar p {
+    border-bottom: 1px solid gray;
+    margin: 0 0;
+    padding: 10px 10px;
+    text-align: left;
+}
+
+.div-navbar header {
+    text-align: center;
+    font-size: 2em;
+}
+
+
+
+.div-main-section {
+    margin-left: 10px;
+    min-width: 500px;
+    padding: 20px 20px;
+}
+
+.main-section>header {
+    font-size: 2em;
+}
+
+.main-section>p {
+    margin: 10px 10px;
+}
+
+.main-section>pre {
+    margin: 10px 20px;
+    background-color: lightgray;
+    overflow: auto;
+}
+
+#main-doc {
+    display: flex;
+}

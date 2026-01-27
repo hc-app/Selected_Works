@@ -1,0 +1,377 @@
+<!-- https://drum-machine.freecodecamp.rocks/ -->
+<!DOCYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content=""
+      width="device-width,"
+      initial-scale="1.0"
+    />
+    <meta name="description" content="Build a Drum Machine" />
+    <title>Drum Machine</title>
+    <!--CDN Script-->
+    <script>
+      //CDN Data
+      let cdnSRCs = {
+        cdnJQuery: {
+          primary: {
+            src: "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnReact: {
+          primary: {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnReactDom: {
+          primary: {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/index.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnRedux: {
+          primary: {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/redux@5.0.0/dist/redux.legacy-esm.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnReactRedux: {
+          primary: {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/react-redux/8.1.3/react-redux.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/react-redux@9.0.4/dist/react-redux.legacy-esm.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnSASS: {
+          primary: {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.9.2/sass.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            src: "https://cdn.jsdelivr.net/npm/sass@1.69.5/sass.default.min.js",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+      };
+
+      let cdnHREFs = {
+        cdnFontAwesome: {
+          primary: {
+            rel: "stylesheet",
+            href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            rel: "stylesheet",
+            href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+        cdnBootstrap: {
+          primary: {
+            rel: "stylesheet",
+            href: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap-grid.min.css",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+          secondary: {
+            rel: "stylesheet",
+            href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+            integrity: "",
+            crossorigin: "anonymous",
+            referrerpolicy: "no-referrer",
+          },
+        },
+      };
+
+      //Checks status of CDN sites
+      async function statusURL(url) {
+        let value = await fetch(url, { method: "GET" })
+          .then((response) => {
+            return response.status;
+          })
+          .catch((error) => {
+            console.error("Error: ", error);
+          });
+
+        return value;
+      }
+
+      //Creates CDN script element
+      function createSrcScriptElement(resource, source) {
+        const script = document.createElement("script");
+
+        script.id = resource;
+        script.src = cdnSRCs[resource][source]["src"];
+        script.integrity = cdnSRCs[resource][source]["integrity"];
+        script.crossorigin = cdnSRCs[resource][source]["crossorigin"];
+        script.referrerpolicy = cdnSRCs[resource][source]["referrerpolicy"];
+
+        script.async = true;
+
+        script.onload = (e) => {
+          console.log("Script element loaded successfuly: " + e.target.id);
+        };
+
+        script.onerror = (e) => {
+          console.log(
+            "Error occurred while loading script element: " + e.target.id
+          );
+        };
+
+        document.head.appendChild(script);
+      }
+
+      //Creates CDN link element
+      function createHrefLinkElement(resource, source) {
+        const link = document.createElement("link");
+
+        link.id = resource;
+        link.rel = cdnHREFs[resource][source]["rel"];
+        link.src = cdnHREFs[resource][source]["href"];
+        link.integrity = cdnHREFs[resource][source]["integrity"];
+        link.crossorigin = cdnHREFs[resource][source]["crossorigin"];
+        link.referrerpolicy = cdnHREFs[resource][source]["referrerpolicy"];
+
+        link.async = true;
+
+        link.onload = (e) => {
+          console.log("Link element loaded successfuly: " + e.target.id);
+        };
+
+        link.onerror = (e) => {
+          console.log(
+            "Error occurred while loading link element: " + e.target.id
+          );
+        };
+
+        document.head.appendChild(link);
+      }
+
+      //Creates all CDN script and link elements using primary or secondary CDN source
+      async function checkCDN(cdnObject, attribute, createElement) {
+        //Parameters: cdn data object, "src" or "href" attribute from cdn data object, createElement function to use
+        for (let resource in cdnObject) {
+          let statusCode = "";
+          let source = "";
+
+          let url = cdnObject[resource]["primary"][attribute];
+          statusCode = await statusURL(url);
+
+          if (statusCode === 200) {
+            source = "primary";
+            createElement(resource, source);
+            url = "";
+            statusCode = "";
+            console.log(resource + " : " + source + " source will be used"); //
+          } else {
+            url = cdnObject[resource]["secondary"][attribute];
+            statusCode = await statusURL(url);
+            if (statusCode === 200) {
+              source = "secondary";
+              createElement(resource, source);
+              url = "";
+              statusCode = "";
+              console.log(resource + " : " + source + " source will be used"); //
+            } else {
+              url = "";
+              statusCode = "";
+              console.log(resource + ": all resource CDN's didn't load"); //
+            }
+          }
+        }
+      }
+
+      //Call function to create all CDN script and link elements
+      checkCDN(cdnSRCs, "src", createSrcScriptElement);
+      checkCDN(cdnHREFs, "href", createHrefLinkElement);
+    </script>
+
+    <!--import css file-->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="center-container">
+      <section id="drum-machine">
+        <section id="logo">
+          <i class="fa-solid fa-drum"></i>
+        </section>
+        <section id="drum">
+          <section id="drum-pad">
+            <button id="Q-button" class="drum-pad" value="Q">
+              <audio
+                id="Q"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
+              ></audio>
+              Q
+            </button>
+            <button id="W-button" class="drum-pad" value="W">
+              <audio
+                id="W"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
+              ></audio>
+              W
+            </button>
+            <button id="E-button" class="drum-pad" value="E">
+              <audio
+                id="E"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
+              ></audio>
+              E
+            </button>
+
+            <button id="A-button" class="drum-pad" value="A">
+              <audio
+                id="A"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
+              ></audio>
+              A
+            </button>
+            <button id="S-button" class="drum-pad" value="S">
+              <audio
+                id="S"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
+              ></audio>
+              S
+            </button>
+            <button id="D-button" class="drum-pad" value="D">
+              <audio
+                id="D"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
+              ></audio>
+              D
+            </button>
+
+            <button id="Z-button" class="drum-pad" value="Z">
+              <audio
+                id="Z"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
+              ></audio>
+              Z
+            </button>
+            <button id="X-button" class="drum-pad" value="X">
+              <audio
+                id="X"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
+              ></audio>
+              X
+            </button>
+            <button id="C-button" class="drum-pad" value="C">
+              <audio
+                id="C"
+                class="clip"
+                src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
+              ></audio>
+              C
+            </button>
+          </section>
+          <section id="settings">
+            <div id="power">
+              <p>Power</p>
+              <label class="switch">
+                <input
+                  id="power-checkbox"
+                  class="checkbox"
+                  type="checkbox"
+                  checked="true"
+                />
+                <span class="toggle"></span>
+              </label>
+            </div>
+            <div id="display">
+              <div><p id="display-audio"></p></div>
+            </div>
+            <div id="volume">
+              <p>Volume</p>
+              <label for="volume"></label>
+              <input
+                type="range"
+                id="volume-slider"
+                class="slider"
+                name="volume"
+                min="0"
+                max="100"
+                step="1"
+                value="50"
+              />
+            </div>
+
+            <div id="bank">
+              <p>Bank</p>
+              <label class="switch">
+                <input id="bank-checkbox" class="checkbox" type="checkbox" />
+                <span class="toggle"></span>
+              </label>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section id="web-developer">
+        by <a class="links" href="https://codepen.io/hc-app/">Henry Chen</a>
+      </section>
+    </div>
+  </body>
+  <!--import javascript file-->
+  <script src="index.js"></script>
+</html>
